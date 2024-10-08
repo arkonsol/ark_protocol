@@ -33,7 +33,7 @@ We welcome contributions from developers who want to extend or build new PAO pro
 First, fork and clone the repository to your local development environment:
 
 ```bash
-git clone https://github.com/<your-username>/ark_protocol.git
+git clone https://github.com/arkonsol/ark_protocol.git
 cd ark_protocol
 ```
 
