@@ -12,7 +12,7 @@ pub struct RegisterGovernment<'info> {
         init,
         payer = payer,
         space = StateInfo::LEN,
-        seeds = [b"state_info", government_program.key().as_ref()],
+        seeds = [b"state_info"],
         bump
     )]
     pub state_info: Account<'info, StateInfo>,
