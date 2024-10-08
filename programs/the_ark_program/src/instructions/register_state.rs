@@ -23,7 +23,6 @@ pub struct RegisterGovernment<'info> {
 }
 
 #[account]
-#[derive(Default)]
 pub struct StateInfo {
     pub name: String,
     pub government_type: GovernmentType,
