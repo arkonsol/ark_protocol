@@ -100,19 +100,37 @@ use anchor_lang::prelude::*;
 pub mod meritocracy {
     use super::*;
 
-    pub fn initialize_government(ctx: Context<InitializeGovernment>, governance_structure: String) -> Result<()> {
-        let pao = &mut ctx.accounts.pao;
-        pao.governance_structure = governance_structure;
+        pub fn initialize_and_register_government(ctx: Context<Initialize>, name: String) -> Result<()> {
+        // Create CPI context
+        let cpi_program = ctx.accounts.ark_program.to_account_info();
+        let cpi_accounts = RegisterGovernment {
+            payer: ctx.accounts.creator.to_account_info(),
+            ark_analytics: ctx.accounts.ark_analytics.to_account_info(),
+            state_info: ctx.accounts.state_info.to_account_info(),
+            government_program: ctx.accounts.government_program.to_account_info(),
+            system_program: ctx.accounts.system_program.to_account_info(),
+        };
+        let cpi_ctx = CpiContext::new(cpi_program, cpi_accounts);
+        
+        // Make the CPI call
+        register_government(cpi_ctx, name, GovernmentType::Republic)?;
+    
         Ok(())
     }
+
 }
 
 #[derive(Accounts)]
-pub struct InitializeGovernment<'info> {
-    #[account(init, payer = user, space = 8 + 40)]
-    pub pao: Account<'info, PAO>,
+pub struct Initialize<'info> {
     #[account(mut)]
-    pub user: Signer<'info>,
+    pub creator: Signer<'info>,
+    #[account(mut)]
+    pub ark_analytics: Account<'info, ArkAnalytics>,
+    #[account(mut)]
+    pub state_info: Account<'info, StateInfo>,
+    /// CHECK: This is the program ID of the specific government type
+    pub government_program: UncheckedAccount<'info>,
+    pub ark_program: Program<'info, TheArkProgram>,
     pub system_program: Program<'info, System>,
 }
 ```
