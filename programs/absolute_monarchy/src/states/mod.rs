@@ -1,0 +1,25 @@
+pub mod decree;
+pub mod division;
+pub mod economy;
+pub mod kingdom;
+pub mod monarch;
+pub mod nobility;
+pub mod policy;
+pub mod privileges;
+pub mod subject;
+pub mod treasury;
+pub mod war;
+pub mod invite;
+
+pub use decree::*;
+pub use division::*;
+pub use economy::*;
+pub use kingdom::*;
+pub use monarch::*;
+pub use nobility::*;
+pub use policy::*;
+pub use privileges::*;
+pub use subject::*;
+pub use treasury::*;
+pub use war::*;
+pub use invite::*;
