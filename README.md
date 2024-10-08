@@ -95,6 +95,12 @@ Example Instruction Handler:
 
 ```rust
 use anchor_lang::prelude::*;
+use the_ark_program::cpi::accounts::{RegisterGovernment, AddTokenToTreasury, CreateTreasury};
+use the_ark_program::program::TheArkProgram;
+use the_ark_program::state::analytics::ArkAnalytics;
+use the_ark_program::cpi::register_government;
+use the_ark_program::instructions::register_state::StateInfo;
+use the_ark_program::instructions::register_state::GovernmentType;
 
 #[program]
 pub mod meritocracy {
