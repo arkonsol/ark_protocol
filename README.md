@@ -42,7 +42,7 @@ cd ark_protocol
 Ensure you have the Anchor framework installed for developing Solana programs. If you haven't installed it yet, use:
 
 ```bash
-cargo install --git https://github.com/coral-xyz/anchor --tag v0.24.2 anchor-cli --locked
+cargo install --git https://github.com/coral-xyz/anchor --tag v0.30.1 anchor-cli --locked
 ```
 
 ### 3. Create a New Para-Autonomous Organization Program
